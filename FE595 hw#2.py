@@ -1,6 +1,6 @@
 import requests
 import bs4
-from numpy import arange
+# from numpy import arange
 import time
 
 index = list()
@@ -12,15 +12,13 @@ class webscapper():
             soup = bs4.BeautifulSoup( web,'html.parser')
             for x in soup.find_all('li'):
                 x=x.text.split(':')
-                if x[0]=='Name':
-                    index.append(x)
-                if x[0]=='Purpose':
+                if (x[0]=='Name') or (x[0]=='Purpose'):
                     index.append(x)
         except:
             index = ["error"]
 
-    name=index[1::4]
-    purpose=index[3::4]
+   # name=index[1::4] #no need 
+    # purpose=index[3::4] #no need
     with open("output.txt",'w') as out_file:
         for t in range(len(index)):
             res=""
